@@ -16,3 +16,5 @@
 
 ### `type hinting`: https://kaznews.vercel.app/post/14
 ### `поставь звезду и не пожалеешь`
+
+## python version == 3.9.7
