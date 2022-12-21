@@ -18,6 +18,22 @@ class Translate:
     headers: dict
     folderID: str
 
+def RefreshToken(refresh_url: str, access_token: str)-> dict:
+    data = {
+
+    "yandexPassportOauthToken": "{}".format(access_token)
+
+            }
+    try:
+        response = requests.post(refresh_url, json=data)
+
+        if response.status_code == 200:
+            return response.text
+        else:
+            return {'error': 'Not data'}
+
+    except Exception as e:
+        return e
 
 def post(translated_data: Translate) -> str:
 
@@ -30,6 +46,11 @@ def post(translated_data: Translate) -> str:
 
     try:
         response = requests.post(translated_data.url, json=datas, headers=translated_data.headers)
+        if response.status_code == 401:
+            data = RefreshToken(os.environ.get('TOKEN_REFRESH_URL'), os.environ.get('ACCESS_TOKEN'))
+            json_convert = json.loads(data)
+            headers = {'Authorization': 'Bearer {}'.format(json_convert['iamToken'])}
+            response = requests.post(translated_data.url, json=datas, headers=headers)
     except Exception as e:
         return e
     return response.text
@@ -46,3 +67,10 @@ data = Translate(os.environ.get('URLS'), sourceLanguageCode, targetLanguageCode,
 
 json_convert = json.loads(post(data))
 print(json_convert['translations'][0]['text'])
+
+
+
+
+
+
+

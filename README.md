@@ -16,5 +16,12 @@
 
 ### `type hinting`: https://kaznews.vercel.app/post/14
 ### `поставь звезду и не пожалеешь`
-
+### .env 
+Он состоит из 5 переменных <br>
+<h4>URLS = https://translate.api.cloud.yandex.net/translate/v2/translate </h4>
+<h4> TOKEN = <- IAM Token> </h4>
+<h4>FOLDERID = < -folder id> - идентификатор каталога: https://console.cloud.yandex.ru/folders/ </h4>
+<h4> ACCESS_TOKEN = <- Oauth Token> </h4>
+<h4> TOKEN_REFRESH_URL = https://iam.api.cloud.yandex.net/iam/v1/tokens </h4>
 ## python version == 3.9.7
+
